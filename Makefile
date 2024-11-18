@@ -4,7 +4,7 @@ deploy:
     @sudo docker compose up -d
 
 run-backup:
-    @if [ -d /home/ubuntu/databasemario/MySQL/data ]; then \
+	@if [ -d /home/ubuntu/databasemario/MySQL/data ]; then \
         echo "Eliminando carpeta existente: /home/ubuntu/databasemario/MySQL/data"; \
         sudo rm -r /home/ubuntu/databasemario/MySQL/data; \
     else \
