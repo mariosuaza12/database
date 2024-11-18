@@ -10,7 +10,7 @@ MYSQL_DATABASE="portafolio"
 mkdir -p $BACKUP_DIR
 
 # Ejecutar el respaldo
-docker exec mysql mysqldump -u$MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE > $BACKUP_DIR/db_backup_$TIMESTAMP.sql
+sudo docker exec mysql mysqldump -u$MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE > $BACKUP_DIR/db_backup_$TIMESTAMP.sql
 
 # Mantener un solo backup (una vez al día)
 if [[ $(date +"%H") == "23" ]]; then
