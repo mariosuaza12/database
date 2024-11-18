@@ -9,16 +9,17 @@ services:
       - "3306:3306"
     volumes:
       - ./MySQL/data:/var/lib/mysql
+      - ./MySQL/backups/backup.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - portafolio-network
     healthcheck:
-      test: ["CMD", "mysql" ,"-u", "portafolio-user", "-pCVEfL3^9CjoRJ#db"]
+      test: [ "CMD", "mysql", "-u", "portafolio-user", "-pCVEfL3^9CjoRJ#db" ]
       interval: 30s
       timeout: 10s
       retries: 5
 
   adminer:
-    image : adminer
+    image: adminer
     container_name: adminer
     restart: always
     ports:
@@ -29,4 +30,4 @@ services:
 networks:
   portafolio-network:
     driver: bridge
-    name : portafolio-network
+    name: portafolio-network

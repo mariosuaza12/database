@@ -10,12 +10,7 @@ MYSQL_DATABASE="portafolio"
 mkdir -p $BACKUP_DIR
 
 # Ejecutar el respaldo
-sudo docker exec mysql mysqldump -u$MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE > $BACKUP_DIR/db_backup_$TIMESTAMP.sql
+sudo docker exec mysql mysqldump -u$MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE > $BACKUP_DIR/backup.sql
 sed -i '/-- Host: localhost/d' $BACKUP_DIR/db_backup_$TIMESTAMP.sql
-# Mantener un solo backup (una vez al día)
-if [[ $(date +"%H") == "23" ]]; then
-  echo "Ejecutando limpieza de backups antiguos..."
-  ls -1t $BACKUP_DIR/*.sql | tail -n +1 | xargs rm -f
-fi
 
 echo "Backup completado: $BACKUP_DIR/db_backup_$TIMESTAMP.sql"
