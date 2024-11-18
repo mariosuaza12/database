@@ -11,6 +11,5 @@ mkdir -p $BACKUP_DIR
 
 # Ejecutar el respaldo
 sudo docker exec mysql mysqldump -u$MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE > $BACKUP_DIR/backup.sql
-sed -i '/-- Host: localhost/d' $BACKUP_DIR/db_backup_$TIMESTAMP.sql
 
 echo "Backup completado: $BACKUP_DIR/db_backup_$TIMESTAMP.sql"
