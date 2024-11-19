@@ -40,8 +40,9 @@ jobs:
           git reset --hard origin/main &&
           git pull origin main &&
 
-          # Eliminar el contenedor existente si está corriendo
+          # Eliminar contenedores existentes si están corriendo
           sudo docker rm -f adminer || true &&
+          sudo docker rm -f mysql || true &&
 
           # Construir y ejecutar los contenedores de Docker
           sudo docker compose down &&
